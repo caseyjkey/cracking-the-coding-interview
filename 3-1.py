@@ -5,18 +5,31 @@ class Stacks:
         self.tops = [-1, -1, -1]
     
     def add(self, elem, stack):
-        aStack = self.arr[:self.tops[stack]+1]
-        aStack.append(elem)
-        top = len(aStack)-1
-        self.tops[stack] = top
-        self.arr = aStack + self.arr[self.tops[stack]:]
+        if stack == 0:
+            self.tops[0] += 1
+        elif stack == 1:
+            if self.tops[1] == -1:
+                mid = len(self.arr) // 2
+                self.tops[1] = mid
+            else:
+                self.tops[1] += 1
+        else:
+            if self.tops[2] == -1:
+                self.tops[2] = len(self.arr)
+            self.tops[2] -= 1
+        self.arr[self.tops[stack]] = elem
+
 
     def pop(self, stack):
         top = self.tops[stack]
-        otherTops = self.tops[:stack] + self.tops[stack+1:]
-        if top in otherTops:
-            return None
-
+        elem = self.arr[top]
+        self.arr[top] = None
+        if stack == 0 or stack == 1:
+            self.tops[stack] -= 1
+        else:
+            self.tops[2] += 1
+        return elem
+                    
 
 stacks = Stacks(10)
 stacks.add(0, 0)
@@ -26,7 +39,7 @@ stacks.add(1, 1)
 stacks.add(2, 2)
 stacks.add(2, 2)
 print(stacks.arr, stacks.tops)
-stacks.pop(2)
+print('pop', stacks.pop(2))
 print(stacks.arr, stacks.tops)
-stacks.pop(0)
+print(stacks.pop(0))
 print(stacks.arr, stacks.tops)
