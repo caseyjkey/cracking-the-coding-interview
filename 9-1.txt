@@ -1,0 +1,11 @@
+# Design a stock application which reports end of day stock information such
+as open close high and low.
+
+Since this is a user facing application, and I am assuming there are 1000
+users, I would focus on the caching since this application is read heavy. The
+data will be served by an API. Is latency important? If so, I would use C++ to
+build the API for lower latency. I would also scale horizontally such as edge
+nodes to serve results faster. Problems I see happening are slower responses
+due to edge nodes going offline. I also foresee DDOS attacks being an issue
+since this could give a competitive advantage. I would look into Cloudflare
+for edge workers and DDOS protection for these problems.
