@@ -1,0 +1,3 @@
+# How does a private constructor affect inheritance in Java
+A priavte constructor would prevent subclassing as the child would be unable to call the superconstructor.
+Normally, final keyword is used to prevent subclassing.
