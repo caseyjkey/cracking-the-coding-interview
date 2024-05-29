@@ -1,1 +1,3 @@
 # What's the difference between a thread and a process?
+A process is a program with it's own resources assigned to it. Processes can only share information from their stack or heap using inter-process communication like sockets, pipes, or files. 
+Threads belong to a process and share the same heap space. They have their own stacks, and when they modify the heap, the change is visible to all other threads. Threads are one execution flow of a program. 
