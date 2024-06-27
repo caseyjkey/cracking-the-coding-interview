@@ -11,9 +11,15 @@ def mult(a, b):
 def div(a, b):
     total = 0
     dividend = 0
-    while dividend < a:
+    isNegative = False
+    if a < 0:
+        a = a * -1
+        isNegative = True
+    while dividend <= a:
         dividend += b
-        total += 1 if dividend < a else 0
+        total += 1 if dividend <= a else 0
+    if isNegative:
+        total *= -1
     return total
 
 def sub(a, b):
